@@ -9,9 +9,7 @@
 
 .avatar-card-editor-overlay {
     display: flex;
-    align-items: center;
     width: inherit;
-    justify-content: center;
     background-color: #676767;
     margin: 15px;
     border-radius: 30px;
