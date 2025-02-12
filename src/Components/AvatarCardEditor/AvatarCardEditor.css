@@ -3,3 +3,18 @@
     align-items: center;
     margin: auto;
 }
+
+.avatar-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #1f1f1f;
+    border: 2px solid #3b3b3b;
+    padding: 20px;
+    border-radius: 20px;
+    gap: 8px;
+    width: 300px;
+}
+
+.age-slider-container {
+    margin-top: 20px;
+}

@@ -10,7 +10,8 @@
 .avatar-card-editor-overlay {
     display: flex;
     width: inherit;
-    background-color: #676767;
+    background-color: #242424;
+    border: 1px solid #3b3b3b;
     margin: 15px;
     border-radius: 30px;
 }
