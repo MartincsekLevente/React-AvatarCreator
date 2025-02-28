@@ -4,6 +4,19 @@
     margin: auto;
 }
 
+.avatar-image-container {
+    display: flex;
+    justify-content: center;
+}
+
+.avatar-image {
+    width: 120px;
+    height: 120px;
+    background: #2e2e2e;
+    border-radius: 50%;
+    border: 3px solid #3b3b3b;
+}
+
 .avatar-card {
     display: flex;
     flex-direction: column;

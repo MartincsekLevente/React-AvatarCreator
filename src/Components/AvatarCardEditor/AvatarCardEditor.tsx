@@ -59,8 +59,9 @@ export default function AvatarCardEditor() {
     return (
         <div className={"avatar-card-editor-container"}>
             <div className={"avatar-card"}>
+                <hr></hr>
                 <div className={"avatar-image-container"}>
-                    <div>Image placeholder</div>
+                    <div className={"avatar-image"}></div>
                 </div>
                 <Input
                     onChange={(event) => handleUsernameInputChange(event)}
