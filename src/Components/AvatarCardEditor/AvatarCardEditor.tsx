@@ -13,6 +13,7 @@ export default function AvatarCardEditor() {
     }
 
     interface AvatarParams {
+        avatarImage: string,
         username: string,
         email: string,
         password: string,
@@ -21,6 +22,7 @@ export default function AvatarCardEditor() {
     }
 
     const [avatarDetails, setAvatarDetails] = useState<AvatarParams>({
+        avatarImage: "",
         username: "",
         email: "",
         password: "",
@@ -56,12 +58,41 @@ export default function AvatarCardEditor() {
         }));
     }
 
+    function handleAvatarImageChange(event: ChangeEvent<HTMLInputElement>) {
+        console.log(event);
+        const file = event.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setAvatarDetails((prev) => ({
+                    ...prev,
+                    avatarImage: e.target?.result as string,
+                }))
+            }
+            reader.readAsDataURL(file);
+        }
+
+    }
+
     return (
         <div className={"avatar-card-editor-container"}>
             <div className={"avatar-card"}>
-                <hr></hr>
                 <div className={"avatar-image-container"}>
-                    <div className={"avatar-image"}></div>
+                    <div className={"avatar-image"}
+                         onClick={() => document.getElementById("avatar-upload")?.click()}>
+                        {avatarDetails.avatarImage ?
+                            (
+                                <img className="avatar-image-display" src={avatarDetails.avatarImage}
+                                     alt="Avatar"></img>
+                            ) : (
+                                <img className="avatar-image-display" src="src/Public/Assets/Images/default_profile.jpg"
+                                     alt="Avatar-Default"></img>
+                            )
+                        }
+                        <input id="avatar-upload" type="file" accept="image/jpeg, image/png"
+                               onChange={(event) => handleAvatarImageChange(event)}>
+                        </input>
+                    </div>
                 </div>
                 <Input
                     onChange={(event) => handleUsernameInputChange(event)}
@@ -95,8 +126,8 @@ export default function AvatarCardEditor() {
                     onChange={(value) => handleGenderInputChange(value)}
                     value={avatarDetails.gender}
                     data={[
-                        { label: 'Male', value: Gender.MALE },
-                        { label: 'Female', value: Gender.FEMALE },
+                        {label: 'Male', value: Gender.MALE},
+                        {label: 'Female', value: Gender.FEMALE},
                     ]}
                     color="blue"
                     size="md"

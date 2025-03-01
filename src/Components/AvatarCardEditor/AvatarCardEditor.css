@@ -6,15 +6,60 @@
 
 .avatar-image-container {
     display: flex;
+    align-items: center;
     justify-content: center;
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.avatar-image-container::before {
+    content: "";
+    position: absolute;
+    width: 116%;
+    height: 2px;
+    background: #3b3b3b;
+    left: -8%;
+    top: 65%;
+    z-index: 0;
 }
 
 .avatar-image {
-    width: 120px;
-    height: 120px;
-    background: #2e2e2e;
+    width: 180px;
+    height: 180px;
+    background-size: cover;
     border-radius: 50%;
     border: 3px solid #3b3b3b;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.avatar-image::after {
+    content: "";
+    display: inline;
+    position: absolute;
+    width: 174px;
+    height: 174px;
+    border-radius: 50%;
+    background: rgb(1, 1, 1, 0);
+    transition: background 0.3s ease-in-out;
+}
+
+.avatar-image:hover::after {
+    background: rgba(1, 1, 1, 0.2);
+}
+
+.avatar-image-display {
+    position: absolute;
+    width: 174px;
+    height: 174px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#avatar-upload {
+    display: none;
 }
 
 .avatar-card {

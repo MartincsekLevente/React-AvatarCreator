@@ -1,13 +1,12 @@
-import './HomePage.css';
+import './MyAvatarsPage.css';
 import Sidebar from "../Components/Sidebar/Sidebar.tsx";
 
-export default function HomePage() {
+export default function MyAvatarsPage() {
 
     return (
-        <div className="home-page-container">
+        <div className="my-avatars-container">
             <Sidebar></Sidebar>
             <div className={"page-overlay"}></div>
         </div>
-
     );
 }
