@@ -1,5 +1,6 @@
 .avatar-card-editor-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     margin: auto;
 }
@@ -75,4 +76,11 @@
 
 .age-slider-container {
     margin-top: 20px;
+}
+
+.create-avatar-button {
+    display: flex;
+    margin-top: 20px;
+    width: 100%;
+    justify-content: center;
 }

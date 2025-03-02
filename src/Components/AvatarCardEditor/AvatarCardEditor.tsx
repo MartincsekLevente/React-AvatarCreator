@@ -1,6 +1,7 @@
 import './AvatarCardEditor.css';
-import { Input, PasswordInput, SegmentedControl, Slider } from "@mantine/core";
+import { Button, Input, PasswordInput, SegmentedControl, Slider } from "@mantine/core";
 import { ChangeEvent, useState } from "react";
+import { Validator } from "../../Services/Validator.ts";
 
 export default function AvatarCardEditor() {
 
@@ -18,7 +19,7 @@ export default function AvatarCardEditor() {
         email: string,
         password: string,
         age: number,
-        gender: Gender
+        gender: Gender,
     }
 
     const [avatarDetails, setAvatarDetails] = useState<AvatarParams>({
@@ -71,7 +72,17 @@ export default function AvatarCardEditor() {
             }
             reader.readAsDataURL(file);
         }
+    }
 
+    function handleCreateAvatarClick() {
+        checkValidation();
+    }
+
+    function checkValidation() {
+        console.log("Image: "+Validator.isValidAvatarImage(avatarDetails.avatarImage));
+        console.log("Username: "+Validator.isValidUsername(avatarDetails.username));
+        console.log("Email: "+Validator.isValidEmail(avatarDetails.email));
+        console.log("Password: "+Validator.isValidPassword(avatarDetails.password));
     }
 
     return (
@@ -135,6 +146,13 @@ export default function AvatarCardEditor() {
                     transitionTimingFunction="linear"
                 />
             </div>
+            <Button onClick={handleCreateAvatarClick}
+                    className="create-avatar-button"
+                    variant="filled"
+                    size="md"
+                    radius="md">
+                Create Avatar
+            </Button>
         </div>
     );
 }
