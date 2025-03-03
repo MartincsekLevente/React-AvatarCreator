@@ -6,7 +6,7 @@ export default function HomePage() {
     return (
         <div className="home-page-container">
             <Sidebar></Sidebar>
-            <div className={"page-overlay"}></div>
+            <div className={"home-page-overlay"}></div>
         </div>
 
     );

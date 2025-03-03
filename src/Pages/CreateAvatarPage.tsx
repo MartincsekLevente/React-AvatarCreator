@@ -7,7 +7,7 @@ export default function CreateAvatarPage() {
     return (
         <div className={"create-avatar-container"}>
             <Sidebar></Sidebar>
-            <div className={"page-overlay"}>
+            <div className={"create-avatar-page-overlay"}>
                 <AvatarCardEditor></AvatarCardEditor>
             </div>
         </div>

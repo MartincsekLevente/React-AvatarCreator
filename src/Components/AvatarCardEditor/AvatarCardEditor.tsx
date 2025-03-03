@@ -2,25 +2,12 @@ import './AvatarCardEditor.css';
 import { Button, Input, PasswordInput, SegmentedControl, Slider } from "@mantine/core";
 import { ChangeEvent, useState } from "react";
 import { Validator } from "../../Services/Validator.ts";
+import { Gender, AvatarParams } from "../../Model/Avatar.ts";
 
 export default function AvatarCardEditor() {
 
     const MIN_AGE = 18;
     const MAX_AGE = 90;
-
-    enum Gender {
-        MALE = "Male",
-        FEMALE = "Female"
-    }
-
-    interface AvatarParams {
-        avatarImage: string,
-        username: string,
-        email: string,
-        password: string,
-        age: number,
-        gender: Gender,
-    }
 
     const [avatarDetails, setAvatarDetails] = useState<AvatarParams>({
         avatarImage: "",
@@ -76,13 +63,15 @@ export default function AvatarCardEditor() {
 
     function handleCreateAvatarClick() {
         checkValidation();
+        const savedAvatars = JSON.parse(localStorage.getItem("avatars") || "[]");
+        localStorage.setItem("avatars", JSON.stringify([...savedAvatars, avatarDetails]));
     }
 
     function checkValidation() {
-        console.log("Image: "+Validator.isValidAvatarImage(avatarDetails.avatarImage));
-        console.log("Username: "+Validator.isValidUsername(avatarDetails.username));
-        console.log("Email: "+Validator.isValidEmail(avatarDetails.email));
-        console.log("Password: "+Validator.isValidPassword(avatarDetails.password));
+        console.log("Image: " + Validator.isValidAvatarImage(avatarDetails.avatarImage));
+        console.log("Username: " + Validator.isValidUsername(avatarDetails.username));
+        console.log("Email: " + Validator.isValidEmail(avatarDetails.email));
+        console.log("Password: " + Validator.isValidPassword(avatarDetails.password));
     }
 
     return (

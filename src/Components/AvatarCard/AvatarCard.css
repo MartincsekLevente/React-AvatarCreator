@@ -1,0 +1,47 @@
+.showcase-avatar-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #1f1f1f;
+    width: 300px;
+    border: 2px solid #3b3b3b;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 47px;
+}
+
+.showcase-avatar-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.showcase-avatar-image-container::before {
+    content: "";
+    position: absolute;
+    width: 116%;
+    height: 2px;
+    background: #3b3b3b;
+    left: -8%;
+    top: 65%;
+    z-index: 0;
+}
+
+.showcase-avatar-image {
+    align-self: center;
+    width: 180px;
+    height: 180px;
+    background-size: cover;
+    border-radius: 50%;
+    border: 3px solid #3b3b3b;
+    z-index: 1;
+    object-fit: cover;
+}
+
+.showcase-avatar-card-item {
+    display: flex;
+}
