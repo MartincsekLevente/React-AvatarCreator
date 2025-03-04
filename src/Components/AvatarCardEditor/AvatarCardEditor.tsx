@@ -10,6 +10,7 @@ export default function AvatarCardEditor() {
     const MAX_AGE = 90;
 
     const [avatarDetails, setAvatarDetails] = useState<AvatarParams>({
+        id: "",
         avatarImage: "",
         username: "",
         email: "",
@@ -47,7 +48,6 @@ export default function AvatarCardEditor() {
     }
 
     function handleAvatarImageChange(event: ChangeEvent<HTMLInputElement>) {
-        console.log(event);
         const file = event.target.files?.[0];
         if (file) {
             const reader = new FileReader();
@@ -63,15 +63,18 @@ export default function AvatarCardEditor() {
 
     function handleCreateAvatarClick() {
         checkValidation();
+
+        const avatarDetailsWithId = {
+            ...avatarDetails,
+            id: crypto.randomUUID()
+        }
+        setAvatarDetails(avatarDetailsWithId);
+
         const savedAvatars = JSON.parse(localStorage.getItem("avatars") || "[]");
-        localStorage.setItem("avatars", JSON.stringify([...savedAvatars, avatarDetails]));
+        localStorage.setItem("avatars", JSON.stringify([...savedAvatars, avatarDetailsWithId]));
     }
 
     function checkValidation() {
-        console.log("Image: " + Validator.isValidAvatarImage(avatarDetails.avatarImage));
-        console.log("Username: " + Validator.isValidUsername(avatarDetails.username));
-        console.log("Email: " + Validator.isValidEmail(avatarDetails.email));
-        console.log("Password: " + Validator.isValidPassword(avatarDetails.password));
     }
 
     return (

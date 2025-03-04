@@ -18,14 +18,18 @@ export default function MyAvatarsPage() {
             <Sidebar></Sidebar>
             <div className={"my-avatars-page-overlay"}>
                 {avatars && avatars.map((avatar) => {
-                    return <AvatarCard
-                        avatarImage={avatar.avatarImage}
-                        username={avatar.username}
-                        email={avatar.email}
-                        password={avatar.password}
-                        age={avatar.age}
-                        gender={avatar.gender}>
-                    </AvatarCard>
+                    return (
+                        <div key={avatar.id}>
+                            <AvatarCard
+                                avatarImage={avatar.avatarImage}
+                                username={avatar.username}
+                                email={avatar.email}
+                                password={avatar.password}
+                                age={avatar.age}
+                                gender={avatar.gender}>
+                            </AvatarCard>
+                        </div>
+                    );
                 })}
             </div>
         </div>

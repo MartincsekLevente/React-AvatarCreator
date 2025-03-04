@@ -4,6 +4,7 @@ export enum Gender {
 }
 
 export interface AvatarParams {
+    id: string,
     avatarImage: string,
     username: string,
     email: string,
