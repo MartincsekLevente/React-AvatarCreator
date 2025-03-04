@@ -13,6 +13,12 @@ export default function MyAvatarsPage() {
         setAvatars(savedAvatars);
     }, []);
 
+    function handleDeleteAvatarButtonClick(avatarId: string) {
+        const updatedAvatars = avatars?.filter((avatar) => avatar.id !== avatarId);
+        setAvatars(updatedAvatars);
+        localStorage.setItem("avatars", JSON.stringify(updatedAvatars));
+    }
+
     return (
         <div className="my-avatars-container">
             <Sidebar></Sidebar>
@@ -21,12 +27,10 @@ export default function MyAvatarsPage() {
                     return (
                         <div key={avatar.id}>
                             <AvatarCard
-                                avatarImage={avatar.avatarImage}
-                                username={avatar.username}
-                                email={avatar.email}
-                                password={avatar.password}
-                                age={avatar.age}
-                                gender={avatar.gender}>
+                                avatarParams={avatar}
+                                onDelete={(id) => {
+                                    handleDeleteAvatarButtonClick(id)
+                                }}>
                             </AvatarCard>
                         </div>
                     );
