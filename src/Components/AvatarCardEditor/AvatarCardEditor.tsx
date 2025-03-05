@@ -3,8 +3,10 @@ import { Button, Input, PasswordInput, SegmentedControl, Slider } from "@mantine
 import { ChangeEvent, useState } from "react";
 import { Validator } from "../../Services/Validator.ts";
 import { Gender, AvatarParams } from "../../Model/Avatar.ts";
+import { useNavigate } from "react-router-dom";
 
 export default function AvatarCardEditor() {
+    const navigate = useNavigate();
 
     const MIN_AGE = 18;
     const MAX_AGE = 90;
@@ -62,19 +64,29 @@ export default function AvatarCardEditor() {
     }
 
     function handleCreateAvatarClick() {
-        checkValidation();
+        if (checkValidation()) {
+            const avatarDetailsWithId = addIdToAvatar();
+            try {
+                const savedAvatars = JSON.parse(localStorage.getItem("avatars") || "[]");
+                localStorage.setItem("avatars", JSON.stringify([...savedAvatars, avatarDetailsWithId]));
+                navigate("/my-avatars");
+            } catch (e) {
+                console.error("Cannot save avatar!");
+            }
+        }
+    }
 
+    function addIdToAvatar() {
         const avatarDetailsWithId = {
             ...avatarDetails,
             id: crypto.randomUUID()
         }
         setAvatarDetails(avatarDetailsWithId);
-
-        const savedAvatars = JSON.parse(localStorage.getItem("avatars") || "[]");
-        localStorage.setItem("avatars", JSON.stringify([...savedAvatars, avatarDetailsWithId]));
+        return avatarDetailsWithId;
     }
 
     function checkValidation() {
+        return true;
     }
 
     return (

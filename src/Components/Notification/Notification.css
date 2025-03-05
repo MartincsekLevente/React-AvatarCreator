@@ -1,0 +1,47 @@
+#notif-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.notif-overlay {
+    position: absolute;
+    left: 50%;
+    top: 15%;
+    transform: translate(-50%);
+    display: flex;
+    gap: 15px;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #1f1f1f;
+    box-shadow: 4px 4px 2px #1f1f1f;
+}
+
+.notif-overlay.success {
+    border: 5px solid limegreen;
+}
+
+.notif-overlay.failure {
+    border: 5px solid red;
+}
+
+.notif-message {
+    font-size: 18px;
+    display: flex;
+    align-self: center;
+}
+
+.notif-message.success {
+    color: limegreen;
+}
+
+.notif-message.failure {
+    color: red;
+}
+
+.notif-close-button {
+    display: flex;
+    align-self: center;
+}

@@ -8,13 +8,6 @@ export default function Sidebar() {
 
     return (
         <div className="sidebar-container">
-            <Button onClick={() => navigate("/")}
-                    className={`navigation-button ${activePage.pathname === "/" ? "active" : ""}`}
-                    variant="subtle"
-                    size="md"
-                    radius="md">
-                Home
-            </Button>
             <Button onClick={() => navigate("/create-avatar")}
                     className={`navigation-button ${activePage.pathname === "/create-avatar" ? "active" : ""}`}
                     variant="subtle"
