@@ -4,8 +4,17 @@ import { ChangeEvent, useState } from "react";
 import { Validator } from "../../Services/Validator.ts";
 import { Gender, AvatarParams } from "../../Model/Avatar.ts";
 import { useNavigate } from "react-router-dom";
+import {
+    NOTIF_MSG_FAILURE_AVATAR_PICTURE,
+    NOTIF_MSG_FAILURE_EMAIL, NOTIF_MSG_FAILURE_PASSWORD,
+    NOTIF_MSG_FAILURE_USERNAME
+} from "../../Model/Notification.ts";
 
-export default function AvatarCardEditor() {
+interface AvatarCardEditorProps {
+    onError: (messages) => void,
+}
+
+export default function AvatarCardEditor({onError}: AvatarCardEditorProps) {
     const navigate = useNavigate();
 
     const MIN_AGE = 18;
@@ -64,7 +73,8 @@ export default function AvatarCardEditor() {
     }
 
     function handleCreateAvatarClick() {
-        if (checkValidation()) {
+        const errorMessages = checkValidation();
+        if (errorMessages.length === 0) {
             const avatarDetailsWithId = addIdToAvatar();
             try {
                 const savedAvatars = JSON.parse(localStorage.getItem("avatars") || "[]");
@@ -73,7 +83,19 @@ export default function AvatarCardEditor() {
             } catch (e) {
                 console.error("Cannot save avatar! Error: " + e);
             }
+        } else {
+            onError(errorMessages);
         }
+    }
+
+    function checkValidation(): string[] {
+        let errorMessages = [];
+        !Validator.isValidAvatarImage(avatarDetails.avatarImage) && errorMessages.push(NOTIF_MSG_FAILURE_AVATAR_PICTURE);
+        !Validator.isValidUsername(avatarDetails.username) && errorMessages.push(NOTIF_MSG_FAILURE_USERNAME);
+        !Validator.isValidEmail(avatarDetails.email) && errorMessages.push(NOTIF_MSG_FAILURE_EMAIL);
+        !Validator.isValidPassword(avatarDetails.password) && errorMessages.push(NOTIF_MSG_FAILURE_PASSWORD);
+
+        return errorMessages;
     }
 
     function addIdToAvatar() {
@@ -83,10 +105,6 @@ export default function AvatarCardEditor() {
         }
         setAvatarDetails(avatarDetailsWithId);
         return avatarDetailsWithId;
-    }
-
-    function checkValidation() {
-        return true;
     }
 
     return (

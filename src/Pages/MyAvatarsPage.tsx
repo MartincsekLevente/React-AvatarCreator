@@ -11,7 +11,7 @@ export default function MyAvatarsPage() {
     const location = useLocation();
 
     const [avatars, setAvatars] = useState<AvatarParams[]>([]);
-    const [notifVisible, setNotifVisible] = useState(location.state?.showNotification || false);
+    const [notifVisible, setNotifVisible] = useState(location.state?.showNotification as boolean || false);
 
     useEffect(() => {
         const savedAvatars = JSON.parse(localStorage.getItem("avatars") || "[]");

@@ -32,7 +32,13 @@
 .notif-message {
     font-size: 18px;
     display: flex;
+    flex-direction: column;
+    gap: 5px;
     align-self: center;
+}
+
+.notif-message-item::before {
+    content: "◉ ";
 }
 
 .notif-close-button {

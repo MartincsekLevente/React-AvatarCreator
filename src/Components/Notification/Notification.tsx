@@ -5,8 +5,8 @@ import { NotificationType } from "../../Model/Notification.ts";
 interface NotificationProps {
     messages: string[],
     visible: boolean,
-    type: NotificationType
-    onClose: () => void
+    type: NotificationType,
+    onClose: () => void,
 }
 
 export default function Notification({messages, visible, type, onClose}: NotificationProps) {
