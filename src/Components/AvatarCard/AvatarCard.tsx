@@ -9,6 +9,11 @@ interface AvatarCardProps {
 }
 
 export default function AvatarCard({avatarParams, onDelete}: AvatarCardProps) {
+
+    function transformPassword(): string {
+        return avatarParams.password.replace(/./g,"*");
+    }
+
     return (
         <div className="showcase-avatar-card">
             <div className="showcase-avatar-image-container">
@@ -23,7 +28,7 @@ export default function AvatarCard({avatarParams, onDelete}: AvatarCardProps) {
             <div className="avatar-card-items">
                 <AvatarCardItem label={"Username"} value={avatarParams.username}></AvatarCardItem>
                 <AvatarCardItem label={"Email"} value={avatarParams.email}></AvatarCardItem>
-                <AvatarCardItem label={"Password"} value={avatarParams.password}></AvatarCardItem>
+                <AvatarCardItem label={"Password"} value={transformPassword()}></AvatarCardItem>
                 <AvatarCardItem label={"Age"} value={avatarParams.age as String}></AvatarCardItem>
                 <AvatarCardItem label={"Gender"} value={avatarParams.gender}></AvatarCardItem>
             </div>
