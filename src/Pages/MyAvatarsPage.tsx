@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 import { AvatarParams } from "../Model/Avatar.ts";
 import AvatarCard from "../Components/AvatarCard/AvatarCard.tsx";
 import Notification from "../Components/Notification/Notification.tsx";
-import { NotificationType } from "../Model/Notification.ts";
+import { NOTIF_MSG_SUCCESS, NotificationType } from "../Model/Notification.ts";
+import { useLocation } from "react-router-dom";
 
 export default function MyAvatarsPage() {
+    const location = useLocation();
 
     const [avatars, setAvatars] = useState<AvatarParams[]>([]);
-    const [notifVisible, setNotifVisible] = useState(true);
+    const [notifVisible, setNotifVisible] = useState(location.state?.showNotification || false);
 
     useEffect(() => {
         const savedAvatars = JSON.parse(localStorage.getItem("avatars") || "[]");
@@ -26,7 +28,7 @@ export default function MyAvatarsPage() {
         <div className="my-avatars-container">
             <Sidebar></Sidebar>
             <Notification
-                messages={["Avatar successfully created!"]}
+                messages={[NOTIF_MSG_SUCCESS]}
                 visible={notifVisible}
                 type={NotificationType.SUCCESS}
                 onClose={() => setNotifVisible(false)}>

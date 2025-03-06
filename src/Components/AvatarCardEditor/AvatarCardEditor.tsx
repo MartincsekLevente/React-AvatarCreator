@@ -69,9 +69,9 @@ export default function AvatarCardEditor() {
             try {
                 const savedAvatars = JSON.parse(localStorage.getItem("avatars") || "[]");
                 localStorage.setItem("avatars", JSON.stringify([...savedAvatars, avatarDetailsWithId]));
-                navigate("/my-avatars");
+                navigate("/my-avatars", {state: {showNotification: true}});
             } catch (e) {
-                console.error("Cannot save avatar!");
+                console.error("Cannot save avatar! Error: " + e);
             }
         }
     }

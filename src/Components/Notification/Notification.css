@@ -16,29 +16,23 @@
     border-radius: 10px;
     padding: 20px;
     background-color: #1f1f1f;
-    box-shadow: 4px 4px 2px #1f1f1f;
+    box-shadow: 2px 2px 2px #1f1f1f;
 }
 
 .notif-overlay.success {
-    border: 5px solid limegreen;
+    border: 3px solid #4ab94a;
+    color: #4ab94a;
 }
 
 .notif-overlay.failure {
-    border: 5px solid red;
+    border: 3px solid red;
+    color: red;
 }
 
 .notif-message {
     font-size: 18px;
     display: flex;
     align-self: center;
-}
-
-.notif-message.success {
-    color: limegreen;
-}
-
-.notif-message.failure {
-    color: red;
 }
 
 .notif-close-button {
