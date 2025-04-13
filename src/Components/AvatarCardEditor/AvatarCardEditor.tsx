@@ -11,7 +11,7 @@ import {
 } from "../../Model/Notification.ts";
 
 interface AvatarCardEditorProps {
-    onError: (messages) => void,
+    onError: (messages: string[]) => void,
 }
 
 export default function AvatarCardEditor({onError}: AvatarCardEditorProps) {
@@ -89,12 +89,19 @@ export default function AvatarCardEditor({onError}: AvatarCardEditorProps) {
     }
 
     function checkValidation(): string[] {
-        let errorMessages = [];
-        !Validator.isValidAvatarImage(avatarDetails.avatarImage) && errorMessages.push(NOTIF_MSG_FAILURE_AVATAR_PICTURE);
-        !Validator.isValidUsername(avatarDetails.username) && errorMessages.push(NOTIF_MSG_FAILURE_USERNAME);
-        !Validator.isValidEmail(avatarDetails.email) && errorMessages.push(NOTIF_MSG_FAILURE_EMAIL);
-        !Validator.isValidPassword(avatarDetails.password) && errorMessages.push(NOTIF_MSG_FAILURE_PASSWORD);
-
+        const errorMessages: string[] = [];
+        if (!Validator.isValidAvatarImage(avatarDetails.avatarImage)) {
+            errorMessages.push(NOTIF_MSG_FAILURE_AVATAR_PICTURE);
+        }
+        if (!Validator.isValidUsername(avatarDetails.username)) {
+            errorMessages.push(NOTIF_MSG_FAILURE_USERNAME);
+        }
+        if (!Validator.isValidEmail(avatarDetails.email)) {
+            errorMessages.push(NOTIF_MSG_FAILURE_EMAIL);
+        }
+        if (!Validator.isValidPassword(avatarDetails.password)) {
+            errorMessages.push(NOTIF_MSG_FAILURE_PASSWORD);
+        }
         return errorMessages;
     }
 

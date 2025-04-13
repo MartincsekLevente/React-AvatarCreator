@@ -1,5 +1,5 @@
 import './AvatarCard.css';
-import { AvatarParams, Gender } from "../../Model/Avatar.ts";
+import { AvatarParams } from "../../Model/Avatar.ts";
 import AvatarCardItem from "./AvatarCardItem/AvatarCardItem.tsx";
 import { Button } from "@mantine/core";
 
@@ -29,7 +29,7 @@ export default function AvatarCard({avatarParams, onDelete}: AvatarCardProps) {
                 <AvatarCardItem label={"Username"} value={avatarParams.username}></AvatarCardItem>
                 <AvatarCardItem label={"Email"} value={avatarParams.email}></AvatarCardItem>
                 <AvatarCardItem label={"Password"} value={transformPassword()}></AvatarCardItem>
-                <AvatarCardItem label={"Age"} value={avatarParams.age as String}></AvatarCardItem>
+                <AvatarCardItem label={"Age"} value={avatarParams.age as unknown as string}></AvatarCardItem>
                 <AvatarCardItem label={"Gender"} value={avatarParams.gender}></AvatarCardItem>
             </div>
             <Button

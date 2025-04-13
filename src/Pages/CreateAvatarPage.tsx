@@ -26,7 +26,7 @@ export default function CreateAvatarPage() {
             </Notification>
             <div className={"create-avatar-page-overlay"}>
                 <AvatarCardEditor
-                    onError={(messages) => openNotification(messages)}>
+                    onError={(messages: string[]) => openNotification(messages)}>
                 </AvatarCardEditor>
             </div>
         </div>
