@@ -20,7 +20,7 @@ export default function AvatarCard({avatarParams, onDelete}: AvatarCardProps) {
                 {avatarParams.avatarImage ? (
                     <img className="showcase-avatar-image" src={avatarParams.avatarImage} alt="Avatar"></img>
                 ) : (
-                    <img className="showcase-avatar-image" src="src/Public/Assets/Images/default_profile.jpg"
+                    <img className="showcase-avatar-image" src="/default_profile.jpg"
                          alt="Avatar-Default"></img>
                 )}
 

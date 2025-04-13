@@ -125,7 +125,7 @@ export default function AvatarCardEditor({onError}: AvatarCardEditorProps) {
                                 <img className="avatar-image-display" src={avatarDetails.avatarImage}
                                      alt="Avatar"></img>
                             ) : (
-                                <img className="avatar-image-display" src="src/Public/Assets/Images/default_profile.jpg"
+                                <img className="avatar-image-display" src="/default_profile.jpg"
                                      alt="Avatar-Default"></img>
                             )
                         }
